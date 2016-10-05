@@ -1,21 +1,21 @@
-# GeoTiffMap
+# GeoTiffApply
 
 `map` and `reduce` functions for geotiff datasets.
 
-GeoTiffMap provides functionality for processing large raster datasets with user-defined functions using `map` and `reduce` philosophies. 
+GeoTiffApply provides functionality for processing large raster datasets with user-defined functions using `map` and `reduce` philosophies. 
 
 ## Status
-GeoTiffMap is currently in its' infancy - more of the start of a collection of ideas than something releasable yet!
+GeoTiffApply is currently in its' infancy - more of the start of a collection of ideas than something releasable yet!
 
 ## Project Goals
 - Provide `map` and `reduce` functions for user-defined processes against (geospatial) raster datasets of any size. These functions can handle any kind of iteration (different block sizes, overlaps/buffers, 'mosaic' iterators) and can also chain user-defined processes to be applied to each block.
 
-GeoTiffMap aims to make it easy to define raster processing without having to worry about the boilerplate of actually applying it to the raster, no matter the size of the raster. 
+GeoTiffApply aims to make it easy to define raster processing without having to worry about the boilerplate of actually applying it to the raster, no matter the size of the raster. 
 
 ## Building
 
-GeoTiffMap uses CMake for building on all platforms.
-GeoTiffMap is split into two libraries: `galgcore` and `galgfunc`.
+GeoTiffApply uses CMake for building on all platforms.
+GeoTiffApply is split into two libraries: `galgcore` and `galgfunc`.
 The `galgcore` library is dependent upon GDAL (trunk) and `galgfunc` is dependent upon OpenCV.
 To build the tests, googletest is required.
 
