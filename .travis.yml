@@ -1,0 +1,65 @@
+# Config file for building GeoTiffMap and running the test suite
+
+language: cpp
+dist: trusty
+
+env:
+  global:
+    # COVERITY_SCAN_TOKEN
+   - secure: "E9s2bY/UzZESa2J2wD7q531L0kjI6sedyrV7WhgPdxMLwXBrSeYBvkySuShZVvyMY0ln23dkxDta6e0iGHjkZe4bAiVj7X8eRYezW+7vxv/WsdLm3dgxeBlkK+s95dRqsxKDrL8y7tH+a8dAqApmRxPn92FvnoY4NmUpIqAU+5WO0qWXSkRkKsYpcKKGx54svIIBcOY4CCL+HzmNqbnrJzjselvknDIS0NkpN2zL7HHYr2SiaLLeFximSYlGSkjEpak5+UvkdZB/49aJq9+rjz3k5wQia85wvb7ahftRIjMSjxAzAQLwF48E4fA7xCrldQhTb0sNA7s80YQBDrOYitNLblX0YKMFEY2Dnft5PPvP7IuIiZePJfdmX55B0xjbgj4cNdGza7iX1k1D9spaxfeL8csrk2knUakGrODGr1S7wiHQMIlsDR1T339S7TBBim/gtS1hRYMKIgfm98NFbw+q8OkEavDrUWYemUskUdUDkHT3hmGbkr7pmEDRKRAeS+gbzYxWfpuU0ahzMWKoAW4QyGHPd4AdWcmAeDdxcz6mgRZed+Lxi4WPQB8Fap3CkwO1h7k8fDwAob3pzpUy22TPTnwi3LK8MZs1n1ntQr2ett6jImpVRFoehzYfsujzXFUfhcFCau13OKoGn2dNYGmYCbgEttHl74opcaCaYZA="
+
+compiler:
+  - gcc
+  
+cache:
+  - ccache
+
+install:
+  - sudo apt-get --assume-yes install libgtest-dev libopencv-dev
+  - wget http://www.cmake.org/files/v3.6/cmake-3.6.1.tar.gz
+  - tar xf cmake-3.6.1.tar.gz
+  - cd cmake-3.6.1
+  - ./configure
+  - make -j4 -s
+  - cd ..
+  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+  - wget http://download.osgeo.org/gdal/2.1.1/gdal-2.1.1.tar.gz
+  - tar xf gdal-2.1.1.tar.gz
+  - sudo apt-get --assume-yes build-dep gdal
+  - cd gdal-2.1.1
+  - ./configure
+  - make -j4 -s
+  - sudo make install
+  - cd ..
+
+addons:
+  coverity_scan:
+
+    # GitHub project metadata
+    # ** specific to your project **
+    project:
+      name: JamesRamm/GeoTiffMap
+      version: 1.0
+      description: GeoTiffMap
+
+    # Where email notification of build analysis results will be sent
+    notification_email: jamessramm@gmail.com
+
+    # Commands to prepare for build_command
+    # ** likely specific to your build **
+    build_command_prepend: cmake CMakeLists.txt
+
+    # The command that will be added as an argument to "cov-build" to compile your project for analysis,
+    # ** likely specific to your build **
+    build_command: make -j4
+
+    # Pattern to match selecting branches that will run analysis. We recommend leaving this set to 'coverity_scan'.
+    # Take care in resource usage, and consider the build frequency allowances per
+    #   https://scan.coverity.com/faq#frequency
+    branch_pattern: master
+
+script:
+    - cmake .
+    - make -j4
+    - ctest
+

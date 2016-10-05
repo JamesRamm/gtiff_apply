@@ -1,0 +1,3 @@
+// the configured options and settings for GeoTiffMap
+#define GeoTiffMap_VERSION_MAJOR @GeoTiffMap_VERSION_MAJOR@
+#define GeoTiffMap_VERSION_MINOR @GeoTiffMap_VERSION_MINOR@

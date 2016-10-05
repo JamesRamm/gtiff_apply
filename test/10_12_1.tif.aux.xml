@@ -1,0 +1,20 @@
+<PAMDataset>
+  <Metadata>
+    <MDI key="CATEGORY">RD</MDI>
+    <MDI key="COUNTRY">GB</MDI>
+    <MDI key="HISTORY">{"tasks": [{"task": "publish", "end_time": "2016-05-06T15:10:02.681924"}]}</MDI>
+    <MDI key="MODELLED_RESOLUTION">5m</MDI>
+    <MDI key="PERIL">RF_U</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Metadata>
+      <MDI key="RETURN_PERIOD">20</MDI>
+      <MDI key="SCALE">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">288</MDI>
+      <MDI key="STATISTICS_MEAN">115.44642857143</MDI>
+      <MDI key="STATISTICS_MINIMUM">4</MDI>
+      <MDI key="STATISTICS_STDDEV">67.824595107753</MDI>
+      <MDI key="UNITS">m</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
